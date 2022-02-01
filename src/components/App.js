@@ -41,8 +41,8 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
       <Router>
+        <Navbar />
         <Routes>
           <Route exact path="/" element={<Home posts={posts} />} />
 
