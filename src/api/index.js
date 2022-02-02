@@ -1,4 +1,4 @@
-import { API_URLS, LOCALSTORAGE_TOKEN_KEY } from '../utils';
+import { API_URLS, getFormBody, LOCALSTORAGE_TOKEN_KEY } from '../utils';
 
 const customFetch = async (url, { body, ...customConfig }) => {
   const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
@@ -15,7 +15,7 @@ const customFetch = async (url, { body, ...customConfig }) => {
     ...customConfig,
     headers: {
       ...headers,
-      ...(customConfig.g = headers),
+      ...customConfig.headers,
     },
   };
 
