@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useToasts } from 'react-toast-notifications';
 import styles from '../styles/settings.module.css';
 import { useAuth } from '../hooks';
 
@@ -10,8 +10,51 @@ const Settings = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [savingForm, setSavingForm] = useState(false);
+  const { addToasts } = useToasts();
 
-  const updateProfile = () => {};
+  const clearForm = () => {
+    setPassword('');
+    setConfirmPassword('');
+  };
+
+  const updateProfile = async () => {
+    setSavingForm(true);
+    let error = false;
+    if (!name || !password || !confirmPassword) {
+      addToasts('Please fill all the fields', {
+        appearance: 'error',
+      });
+      error = true;
+    }
+    if (password !== confirmPassword) {
+      addToasts('Password and Confirm Password deoes not match', {
+        appearance: 'error',
+      });
+      error = true;
+    }
+    if (error) {
+      return setSavingForm(false);
+    }
+    const response = await auth.updateUser(
+      auth.user._id,
+      name,
+      password,
+      confirmPassword
+    );
+    if (response.success) {
+      setEditMode(false);
+      setSavingForm(false);
+      clearForm();
+      return addToasts('User updaated successfully', {
+        appearance: 'success',
+      });
+    } else {
+      addToasts(response.message, {
+        appearance: 'error',
+      });
+    }
+    setSavingForm(false);
+  };
 
   return (
     <div className={styles.settings}>
@@ -36,7 +79,7 @@ const Settings = () => {
             onChange={(e) => setName(e.target.value)}
           />
         ) : (
-          <div className={styles.fieldValue}>{auth.user?.email}</div>
+          <div className={styles.fieldValue}>{auth.user?.name}</div>
         )}
       </div>
 
@@ -68,6 +111,7 @@ const Settings = () => {
             <button
               className={`button ${styles.saveBtn}`}
               onClick={updateProfile}
+              disabled={savingForm}
             >
               {savingForm ? 'Saving profile...' : 'Save profile'}
             </button>
