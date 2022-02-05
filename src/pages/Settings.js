@@ -10,7 +10,7 @@ const Settings = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [savingForm, setSavingForm] = useState(false);
-  const { addToasts } = useToasts();
+  const { addToast } = useToasts();
 
   const clearForm = () => {
     setPassword('');
@@ -21,13 +21,13 @@ const Settings = () => {
     setSavingForm(true);
     let error = false;
     if (!name || !password || !confirmPassword) {
-      addToasts('Please fill all the fields', {
+      addToast('Please fill all the fields', {
         appearance: 'error',
       });
       error = true;
     }
     if (password !== confirmPassword) {
-      addToasts('Password and Confirm Password deoes not match', {
+      addToast('Password and Confirm Password deoes not match', {
         appearance: 'error',
       });
       error = true;
@@ -45,11 +45,11 @@ const Settings = () => {
       setEditMode(false);
       setSavingForm(false);
       clearForm();
-      return addToasts('User updaated successfully', {
+      return addToast('User updaated successfully', {
         appearance: 'success',
       });
     } else {
-      addToasts(response.message, {
+      addToast(response.message, {
         appearance: 'error',
       });
     }

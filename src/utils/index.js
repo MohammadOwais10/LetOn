@@ -16,10 +16,10 @@ export const getItemFromLocalStorage = (key) => {
     return console.error('Can get the value from LS');
   }
 
-  localStorage.getItem(key);
+  return localStorage.getItem(key); //it starting error we forget (it help to store the data after the refreshing it show if we not use it does not show data on page and logout also)
 };
 
-export const removeItemFromLocalStorage = (value, key) => {
+export const removeItemFromLocalStorage = (key) => {
   if (!key) {
     return console.error('Can get the value from LS');
   }
