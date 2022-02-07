@@ -9,20 +9,10 @@ import { useAuth } from '../hooks';
 import { Home, Login, Signup, Settings, UserProfile } from '../pages';
 import { Loader, Navbar } from './';
 
-// function PrivateRoute({ children, ...rest }) {
-//   const auth = useAuth();
-//   return (
-//     <Route
-//       {...rest}
-//       render={() => {
-//         if (auth.user) {
-//           return children;
-//         }
-//         return <Navigate to="/login" />;
-//       }}
-//     />
-//   );
-// }
+function PrivateRoute({ children, ...rest }) {
+  const auth = useAuth();
+  return auth.user ? children : <Navigate to="/login" />;
+}
 
 const Page404 = () => {
   return <h1>404</h1>;
@@ -46,10 +36,23 @@ function App() {
 
           <Route path="/register" element={<Signup />} />
 
-          <Route path="/settings" element={<Settings />} />
-          {/* <PrivateRoute path="/settings" element={<Settings />} /> */}
+          <Route
+            path="/settings"
+            element={
+              <PrivateRoute>
+                <Settings />
+              </PrivateRoute>
+            }
+          />
 
-          <Route path="/user/:userId" element={<UserProfile />} />
+          <Route
+            path="/user/:userId"
+            element={
+              <PrivateRoute>
+                <UserProfile />
+              </PrivateRoute>
+            }
+          />
 
           <Route element={<Page404 />} />
         </Routes>
