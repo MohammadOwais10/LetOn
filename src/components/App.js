@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import { useAuth } from '../hooks';
-import { Home, Login, Signup, Settings } from '../pages';
+import { Home, Login, Signup, Settings, UserProfile } from '../pages';
 import { Loader, Navbar } from './';
 
 // function PrivateRoute({ children, ...rest }) {
@@ -48,6 +48,8 @@ function App() {
 
           <Route path="/settings" element={<Settings />} />
           {/* <PrivateRoute path="/settings" element={<Settings />} /> */}
+
+          <Route path="/user/:userId" element={<UserProfile />} />
 
           <Route element={<Page404 />} />
         </Routes>
