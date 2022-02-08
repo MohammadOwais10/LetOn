@@ -39,8 +39,10 @@ const UserProfile = () => {
 
   const checkIfUserIsAFriend = () => {
     console.log('auth', auth);
-    // const friends = auth.user.friends; //another way
-    const friends = auth.user.friends ? auth.user.friends : [];
+    const friends =
+      auth.user
+        .friends; /**now it work because we fetch data for freiwnd in hooks index file */
+    // const friends = auth.user.friends ? auth.user.friends : []; //another way
 
     const friendIds = friends.map((friend) => friend.to_user._id);
     const index = friendIds.indexOf(userId);
