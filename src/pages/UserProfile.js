@@ -4,7 +4,7 @@ import { Loader } from '../components';
 import styles from '../styles/settings.module.css';
 import { useAuth } from '../hooks';
 import { useEffect, useState } from 'react';
-import { fetchUserProfile } from '../api';
+import { addFriend, fetchUserProfile } from '../api';
 
 const UserProfile = () => {
   const [user, setUser] = useState({});
@@ -13,6 +13,7 @@ const UserProfile = () => {
   const { addToast } = useToasts();
   const navigate = useNavigate();
   const auth = useAuth();
+  const [requestInProgress, setRequestInProgress] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -54,6 +55,25 @@ const UserProfile = () => {
     return false;
   };
 
+  const handleRemoveFriendClick = () => {};
+
+  const handleAddFriendClick = async () => {
+    setRequestInProgress(true);
+    const response = await addFriend(userId);
+    if (response.success) {
+      const { friendship } = response.data;
+      auth.updateUserFriends(true, friendship);
+      addToast('Friend add successfully!', {
+        appearance: 'success',
+      });
+    } else {
+      addToast(response.message, {
+        appearance: 'error',
+      });
+    }
+    setRequestInProgress(false);
+  };
+
   return (
     <div className={styles.settings}>
       <div className={styles.imgContainer}>
@@ -76,9 +96,20 @@ const UserProfile = () => {
 
       <div className={styles.btnGrp}>
         {checkIfUserIsAFriend() ? (
-          <button className={`button ${styles.saveBtn}`}>Remove friend</button>
+          <button
+            className={`button ${styles.saveBtn}`}
+            onClick={handleRemoveFriendClick}
+          >
+            {requestInProgress ? 'Removing friend...' : 'Remove friend'}
+          </button>
         ) : (
-          <button className={`button ${styles.saveBtn}`}>Add friend</button>
+          <button
+            className={`button ${styles.saveBtn}`}
+            onClick={handleAddFriendClick}
+            disabled={requestInProgress}
+          >
+            {requestInProgress ? 'Adding friend...' : 'Add friend'}
+          </button>
         )}
       </div>
     </div>
