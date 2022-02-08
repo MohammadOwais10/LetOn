@@ -4,7 +4,7 @@ import { Loader } from '../components';
 import styles from '../styles/settings.module.css';
 import { useAuth } from '../hooks';
 import { useEffect, useState } from 'react';
-import { addFriend, fetchUserProfile } from '../api';
+import { addFriend, removeFriend, fetchUserProfile } from '../api';
 
 const UserProfile = () => {
   const [user, setUser] = useState({});
@@ -55,7 +55,24 @@ const UserProfile = () => {
     return false;
   };
 
-  const handleRemoveFriendClick = () => {};
+  const handleRemoveFriendClick = async () => {
+    setRequestInProgress(true);
+    const response = await removeFriend(userId);
+    if (response.success) {
+      const friendship = auth.user.friends.filter(
+        (friend) => friend.to_user._id === userId
+      );
+      auth.updateUserFriends(false, friendship[0]);
+      addToast('Friend remove successfully!', {
+        appearance: 'success',
+      });
+    } else {
+      addToast(response.message, {
+        appearance: 'error',
+      });
+    }
+    setRequestInProgress(false);
+  };
 
   const handleAddFriendClick = async () => {
     setRequestInProgress(true);
