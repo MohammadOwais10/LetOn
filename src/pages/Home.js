@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Comment, FriendsList, Loader } from '../components';
+import { Comment, FriendsList, Loader, CreatePost } from '../components';
 import { getPosts } from '../api';
 import styles from '../styles/home.module.css';
 import { Link } from 'react-router-dom';
@@ -27,6 +27,7 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <div className={styles.postsList}>
+        <CreatePost />
         {posts.map((post) => (
           <div className={styles.postWrapper} key={`post-${post._id}`}>
             <div className={styles.postHeader}>
