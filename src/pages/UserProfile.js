@@ -25,7 +25,7 @@ const UserProfile = () => {
         addToast(response.message, {
           appearance: 'error',
         });
-        return navigate.push('/');
+        return navigate('/');
       }
 
       setLoading(false);
