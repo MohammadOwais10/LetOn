@@ -44,7 +44,7 @@ const Signup = () => {
     const response = await auth.signup(name, email, password, confirmPassword);
 
     if (response.success) {
-      navigate.push('/login');
+      navigate('/login');
       setSigningUp(false);
 
       return addToast('User registered successfully, please login now', {
