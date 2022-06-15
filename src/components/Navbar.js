@@ -3,6 +3,7 @@ import styles from '../styles/navbar.module.css';
 import { useAuth } from '../hooks';
 import { useEffect, useState } from 'react';
 import { searchUsers } from '../api';
+import logo from '../images/logoLetOn1.PNG';
 
 const Navbar = () => {
   const [results, setResults] = useState([]);
@@ -27,17 +28,14 @@ const Navbar = () => {
     <div className={styles.nav}>
       <div className={styles.leftDiv}>
         <Link to="/">
-          <img
-            alt=""
-            src="https://ninjasfiles.s3.amazonaws.com/0000000000003454.png"
-          />
+          <img className={styles.headerImg} src={logo} />
         </Link>
       </div>
 
       <div className={styles.searchContainer}>
         <img
           className={styles.searchIcon}
-          src="https://cdn-icons-png.flaticon.com/512/6268/6268690.png"
+          src="https://findicons.com/files/icons/1254/flurry_system/256/search.png"
           alt=""
         />
         <input
@@ -72,7 +70,7 @@ const Navbar = () => {
           <div className={styles.user}>
             <Link to="/settings">
               <img
-                src="https://cdn-icons-png.flaticon.com/512/4825/4825123.png"
+                src="https://img.freepik.com/free-vector/awesome-beard-design-template_96853-468.jpg"
                 alt=""
                 className={styles.userDp}
               />
@@ -90,7 +88,7 @@ const Navbar = () => {
             ) : (
               <>
                 <li>
-                  <Link to="/login">Log in</Link>
+                  <Link to="/login">LogIn</Link>
                 </li>
                 <li>
                   <Link to="/register">Register</Link>
