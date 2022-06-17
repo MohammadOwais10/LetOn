@@ -30,6 +30,7 @@ const CreatePost = () => {
   return (
     <div className={styles.createPost}>
       <textarea
+        placeholder="hey,share your thought around the world !"
         className={styles.addPost}
         value={post}
         onChange={(e) => setPost(e.target.value)}
