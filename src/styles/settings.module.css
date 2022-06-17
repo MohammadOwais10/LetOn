@@ -12,11 +12,11 @@
 }
 .settings .imgContainer {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   justify-content: center;
 }
 .settings .imgContainer img {
-  height: 100px;
+  height: 150px;
 }
 .settings .btnGrp {
   display: flex;
@@ -37,18 +37,19 @@
   outline: none;
 }
 .settings .editBtn {
-  border: 1px solid #ef7917;
+  border: 2px solid #c49bff;
   box-sizing: border-box;
-  color: #ef7917;
+  color: #c49bff;
+  font-weight: 600;
 }
 .settings .saveBtn {
-  background: #ef7917;
+  background: #c49bff;
   color: #fff;
   border: none;
   padding: 10px 20px;
 }
 .settings .goBack {
-  color: #ef7917;
+  color: #c49bff;
   margin-top: 7px;
   font-size: 13px;
 }

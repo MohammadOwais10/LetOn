@@ -1,7 +1,7 @@
 .loginSignupHeader {
   font-weight: 600;
   font-size: 30px;
-  color: #ef7917;
+  color: #5c52f3;
 }
 .loginForm {
   background-color: #fff;
@@ -34,8 +34,8 @@
 }
 .field button {
   width: 100%;
-  margin-top: 20px;
-  background: #ef7917;
+  margin: 20px 0;
+  background: #5c52f3;
   border-radius: 2px;
   color: #fff;
   font-size: 20px;

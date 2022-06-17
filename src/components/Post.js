@@ -60,7 +60,7 @@ const Post = ({ post }) => {
       <div className={styles.postHeader}>
         <div className={styles.postAvatar}>
           <img
-            src="https://cdn-icons-png.flaticon.com/512/4825/4825087.png"
+            src="https://cdn-icons-png.flaticon.com/256/5046/5046943.png"
             alt="user-pic"
           />
           <div>

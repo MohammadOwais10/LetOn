@@ -60,7 +60,7 @@ const Settings = () => {
     <div className={styles.settings}>
       <div className={styles.imgContainer}>
         <img
-          src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png"
+          src="https://cdn-icons-png.flaticon.com/512/7544/7544844.png"
           alt=""
         />
       </div>
